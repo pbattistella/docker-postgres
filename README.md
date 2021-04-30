@@ -17,7 +17,7 @@ Crie o arquivo docker-compose.yml
 Adicione o conteúdo do arquivo docker-compose.yml postado aqui nesse repositório
 
 
-## RUM
+## RUN
 No terminal linux (recomendo usar WSL2) digite: $docker-compose up
 
 Obs. o docker-compose build não deve ser usado nesse caso, porque tanto o Postgres e o pgAdmin já estão compilados na Imagem que estou usando
