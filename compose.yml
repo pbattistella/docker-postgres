@@ -1,31 +1,30 @@
-version: '3.5'
+version: '1.0'
 
-services: 
+services:
     postgres:
-        container_name: postgres_container
-        image: postgres:11-alpine
+        container_name: postgres14_container
+        image: postgres:14.10-alpine3.19
         environment:
             POSTGRES_USER: ${POSTGRES_USER:-postgres}
             POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
             PGDATA: /data/postgres
-    
-        ports: 
+        ports:
             - 5432:5432
+        expose:
+            - 5432
         restart: unless-stopped
 
     pgadmin:
-        container_name: pgadmin_container
+        container_name: pgadmin4_container
         image: dpage/pgadmin4
         environment:
             PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
-            PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+            PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-changeme}
             PGADMIN_CONFIG_SERVER_MODE: 'False'
-    
-        ports: 
+
+        ports:
             - "${PGADMIN_PORT:-5050}:80"
         restart: unless-stopped
-
-#pgadmin:http://localhost:5050/browser/ 
-#user: postgres
-#password: changeme
-    
+networks:
+  app_network:
+    driver: bridge
